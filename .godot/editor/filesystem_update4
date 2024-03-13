@@ -1,8 +1,2 @@
-res://main.gd
-res://main.tscn
-res://snake_parts.tscn
-res://hud.tscn
 res://hud.gd
-res://snake_parts.gd
-res://foods.tscn
-res://group_assigner.gd
+res://main.gd
