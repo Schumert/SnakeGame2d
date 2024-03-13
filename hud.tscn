@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsxwhgwvf3iuo"]
+
+[ext_resource type="FontFile" uid="uid://cpq3hmktu7mo4" path="res://fonts/Xolonium-Regular.ttf" id="1_qsc5d"]
+[ext_resource type="Script" path="res://hud.gd" id="1_tasvt"]
+
+[node name="hud" type="CanvasLayer"]
+script = ExtResource("1_tasvt")
+
+[node name="Message" type="Label" parent="."]
+offset_left = 128.0
+offset_top = 288.0
+offset_right = 953.0
+offset_bottom = 352.0
+theme_override_fonts/font = ExtResource("1_qsc5d")
+theme_override_font_sizes/font_size = 50
+text = "Space: 
+Start the Snakey Sneak!	 "
+horizontal_alignment = 1
+
+[node name="MessageTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="HighestScore" type="Label" parent="."]
+offset_left = 128.0
+offset_top = 128.0
+offset_right = 953.0
+offset_bottom = 192.0
+theme_override_fonts/font = ExtResource("1_qsc5d")
+theme_override_font_sizes/font_size = 30
+text = "Highest Score: 0"
+horizontal_alignment = 1
