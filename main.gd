@@ -67,7 +67,7 @@ func hit(area:Node2D):
 func _game_over():
 	$Timer.stop()
 	#get_tree().call_group("foods", "queue_free")
-	$Timer.wait_time = 1
+	$Timer.wait_time = 0.1
 	#$Snake/CollisionShape2D.set_deferred("disabled", true)
 	save_score()
 	if score > highest_score:
