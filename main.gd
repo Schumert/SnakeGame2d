@@ -3,7 +3,7 @@ class_name main extends Node
 var snake_parts = []
 var _rotation_degree = 0
 var score = 0
-var speed_multi = 1
+
 const SAVEFILE = "user://savefile.save"
 var highest_score = 0
 
@@ -67,7 +67,7 @@ func hit(area:Node2D):
 func _game_over():
 	$Timer.stop()
 	#get_tree().call_group("foods", "queue_free")
-	
+	$Timer.wait_time = 1
 	#$Snake/CollisionShape2D.set_deferred("disabled", true)
 	save_score()
 	if score > highest_score:
