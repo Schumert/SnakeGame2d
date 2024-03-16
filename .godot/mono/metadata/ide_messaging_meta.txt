@@ -1,2 +1,0 @@
-﻿51234
-C:/Users/Ben/AppData/Roaming/godotenv/godot/versions/godot_dotnet_4_1_2/Godot_v4.1.2-stable_mono_win64/Godot_v4.1.2-stable_mono_win64.exe

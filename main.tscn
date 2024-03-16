@@ -342,8 +342,26 @@ text = "Restart:R"
 [node name="hud" parent="." instance=ExtResource("4_nqkvo")]
 
 [node name="foods" parent="." instance=ExtResource("3_nw53i")]
+position = Vector2(0, 0)
+
+[node name="food" parent="foods" index="0"]
+position = Vector2(0, 0)
+
+[node name="food2" parent="foods" index="1"]
+position = Vector2(0, 0)
+
+[node name="food3" parent="foods" index="2"]
+position = Vector2(0, 0)
+
+[node name="food4" parent="foods" index="3"]
+position = Vector2(0, 0)
+
+[node name="food5" parent="foods" index="4"]
+position = Vector2(0, 0)
 
 [connection signal="timeout" from="Timer" to="." method="snake_move"]
 [connection signal="area_entered" from="Snake" to="." method="hit"]
 [connection signal="body_entered" from="Snake" to="." method="_gather"]
 [connection signal="start_game" from="hud" to="." method="new_game"]
+
+[editable path="foods"]

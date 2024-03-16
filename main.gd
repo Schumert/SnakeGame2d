@@ -138,8 +138,8 @@ func spawn_random_food():
 	var x_pos:float
 	var y_pos:float
 	var rng = RandomNumberGenerator.new()
-	x_pos = rng.randf_range(2, 30) * 32 #64, 961
-	y_pos = rng.randf_range(2, 20) * 32 # 54, 641
+	x_pos = rng.randi_range(2, 30) * 32 #64, 960
+	y_pos = rng.randi_range(2, 20) * 32 # 64, 640
 	food.position = Vector2(x_pos, y_pos)
 	food.visible = true
 	add_child(food)
