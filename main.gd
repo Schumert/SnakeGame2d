@@ -7,7 +7,7 @@ var score = 0
 const SAVEFILE = "user://savefile.save"
 var highest_score = 0
 
-@export var speed_multiply:int
+
 
 var is_game_over = true
 
@@ -42,13 +42,13 @@ func _input(event):
 		snake_parts.clear()
 		_grow_bigger()
 		$Snake.position = Vector2(463, 495)
+		$Snake.rotation = 0
 		_rotation_degree = 0
 		
 		await get_tree().create_timer(0.5).timeout
 		$hud._on_start_button_pressed() #triggers new_game
 
 func new_game():
-
 	score = 0
 	update_score()
 	is_game_over = false
@@ -82,7 +82,8 @@ func _game_over():
 
 
 func restart():
-	_game_over()
+	if is_game_over == false:
+		_game_over()
 
 
 var body_part = preload("res://snake_parts.tscn")
@@ -136,8 +137,9 @@ func spawn_random_food():
 	var food = foods[random].duplicate()
 	var x_pos:float
 	var y_pos:float
-	x_pos =randi() % (32* 29) + 32
-	y_pos = randi() % 550 + 32 
+	var rng = RandomNumberGenerator.new()
+	x_pos = rng.randf_range(2, 30) * 32 #64, 961
+	y_pos = rng.randf_range(2, 20) * 32 # 54, 641
 	food.position = Vector2(x_pos, y_pos)
 	food.visible = true
 	add_child(food)
@@ -161,10 +163,10 @@ func _gather(body:TileMap):
 		faster()
 
 func faster():
-	if $Timer.wait_time > 0.05:
-		$Timer.wait_time -= 0.001
-	elif $Timer.wait_time > 0.03:
-		$Timer.wait_time -= 0.0001
+	if $Timer.wait_time > 0.07:
+		$Timer.wait_time -= 0.0003
+	elif $Timer.wait_time > 0.05:
+		$Timer.wait_time -= 0.0002
 
 
 func save_score():

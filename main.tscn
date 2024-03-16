@@ -308,7 +308,7 @@ zoom = Vector2(1.125, 0.92)
 wait_time = 0.1
 
 [node name="Snake" type="Area2D" parent="."]
-position = Vector2(463, 495)
+position = Vector2(465, 495)
 
 [node name="TileMap" type="TileMap" parent="Snake"]
 position = Vector2(-592, -304)
