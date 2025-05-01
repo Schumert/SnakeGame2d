@@ -129,20 +129,51 @@ func snake_move():
 	
 
 var foods = []
-func spawn_random_food():
-	for n in $foods.get_child_count():
-		foods.append($foods.get_child(n))
-	var  random = randi() % foods.size()-1
+const CELL_SIZE := 32
+const MIN_X := 32
+const MAX_X := 960
+const MIN_Y := 32
+const MAX_Y := 640
 
-	var food = foods[random].duplicate()
-	var x_pos:float
-	var y_pos:float
+func spawn_random_food():
 	var rng = RandomNumberGenerator.new()
-	x_pos = rng.randi_range(2, 30) * 32 #64, 960
-	y_pos = rng.randi_range(2, 20) * 32 # 64, 640
-	food.position = Vector2(x_pos, y_pos)
+	rng.randomize()
+    
+	var spawn_pos: Vector2
+    
+    #spawn_pos ne zaman snake ile çakışırsa tekrar çek
+	while true:
+        # x için 32,64,…,960; y için 32,64,…,640
+		var grid_x = rng.randi_range(MIN_X / CELL_SIZE, MAX_X / CELL_SIZE)
+		var grid_y = rng.randi_range(MIN_Y / CELL_SIZE, MAX_Y / CELL_SIZE)
+		spawn_pos = Vector2(grid_x, grid_y) * CELL_SIZE
+        
+        # snake head ve body pozisyonlarını snapped Grid olarak topla
+		var head_pos = $Snake.position.snapped(Vector2(CELL_SIZE, CELL_SIZE))
+		if spawn_pos == head_pos:
+			continue
+        
+		var conflict = false
+		for part in snake_parts:
+			if spawn_pos == part.position.snapped(Vector2(CELL_SIZE, CELL_SIZE)):
+				conflict = true
+				break
+            #if spawn_pos.distance_to(part.position) < 1
+		if conflict:
+			continue
+        
+        # pozisyon temizse döngüden çık
+		break
+
+    # spawn_pos %100 güvenli ve tam grid’de
+	var templates = $foods.get_children()
+	var tpl = templates[rng.randi_range(0, templates.size() - 1)]
+	var food = tpl.duplicate()  
+    
+	food.position = spawn_pos
 	food.visible = true
 	add_child(food)
+
 	
 func update_score():
 	var string_score = str("Score: ", score)
@@ -155,6 +186,7 @@ func _gather(body:TileMap):
 		
 		if body.is_in_group("special_foods"):
 			score+=1
+			_grow_bigger()
 			_grow_bigger()
 		score+=1
 		update_score()

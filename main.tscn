@@ -308,7 +308,7 @@ zoom = Vector2(1.125, 0.92)
 wait_time = 0.1
 
 [node name="Snake" type="Area2D" parent="."]
-position = Vector2(465, 495)
+position = Vector2(464, 496)
 
 [node name="TileMap" type="TileMap" parent="Snake"]
 position = Vector2(-592, -304)
@@ -342,7 +342,7 @@ text = "Restart:R"
 [node name="hud" parent="." instance=ExtResource("4_nqkvo")]
 
 [node name="foods" parent="." instance=ExtResource("3_nw53i")]
-position = Vector2(0, 0)
+position = Vector2(-288, 48)
 
 [node name="food" parent="foods" index="0"]
 position = Vector2(0, 0)

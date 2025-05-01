@@ -1,5 +1,8 @@
+res://main.gd
 res://main.tscn
+res://hud.gd
+res://food.gd
+res://snake_parts.gd
 res://snake_parts.tscn
 res://hud.tscn
 res://foods.tscn
-res://main.gd
